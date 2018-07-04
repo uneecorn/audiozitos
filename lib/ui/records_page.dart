@@ -22,7 +22,10 @@ class _RecordsPageState extends State<RecordsPage> {
           ),
           backgroundColor: Colors.deepPurple,
           // TODO: open recording page with a sapeka animation
-          onPressed: () => debugPrint('hello'),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.of(context).pushNamed('/recorder');
+          },
         ),
         body: buildList(),
     backgroundColor: Colors.white30,
