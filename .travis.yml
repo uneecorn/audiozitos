@@ -44,6 +44,7 @@ matrix:
         - brew install ideviceinstaller ios-deploy
         - pod setup
         - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+        - pip install six
       script:
         - ./flutter/bin/flutter -v build ios --no-codesign
 
