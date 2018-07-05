@@ -31,20 +31,19 @@ matrix:
         - unzip -qq gradle-3.5-bin.zip
         - export GRADLE_HOME=$PWD/gradle-3.5
         - export PATH=$GRADLE_HOME/bin:$PATH
-        - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
+        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
       script:
         - ./flutter/bin/flutter -v build apk
 
     - os: osx
       language: generic
-      osx_image: xcode8.3
+      osx_image: xcode9.4
       before_script:
-        - pip install six
         - brew update
         - brew install --HEAD libimobiledevice
-        - brew install ideviceinstaller
-        - brew install ios-deploy
-        - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
+        - brew install ideviceinstaller ios-deploy cocoapods
+        - pod setup
+        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
       script:
         - ./flutter/bin/flutter -v build ios --no-codesign
 
