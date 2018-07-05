@@ -19,56 +19,44 @@ class _RecordsPageState extends State<RecordsPage> {
             Icons.keyboard_voice,
             color: Colors.white,
           ),
-          backgroundColor: Colors.deepPurple,
-          // TODO: open recording page with a sapeka animation
+          backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
             Navigator.pushNamed(context, '/recorder');
           },
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        bottomNavigationBar: BottomBar(),
         body: buildList(),
         backgroundColor: Colors.white30,
       );
 }
 
-var container = Container(
-  height: 180.0,
-  child: Center(
-    child: CircleAvatar(
-      child: IconButton(
-        icon: Icon(
-          Icons.keyboard_voice,
-          color: Colors.white,
-        ),
-        onPressed: () => debugPrint('default recorder'),
+class BottomBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      color: Theme.of(context).primaryColor,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: IconButton(
+              icon: Icon(Icons.settings, color: Theme.of(context).canvasColor),
+              onPressed: () => Navigator.pushNamed(context, '/configurations'),
+            ),
+          ),
+        ],
       ),
-
-      backgroundColor: Colors.purpleAccent,
-      // TODO: open recording page with a sapeka animation
-    ),
-  ),
-  decoration: BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        Colors.deepPurpleAccent,
-        Colors.deepPurple,
-        Colors.purple,
-        Colors.purpleAccent,
-      ],
-      stops: [0.1, 0.4, 0.6, 0.9],
-    ),
-  ),
-);
+    );
+  }
+}
 
 Widget buildList() {
   // TODO: create service to get the recordings
   return ListView.builder(
       itemCount: 30,
       itemBuilder: (BuildContext context, int position) {
-        if (position == 0)
-          return container;
-        else if (position.isEven && position > 0) return Divider();
+        if (position.isOdd) return Divider();
         final index = position ~/ 2;
 
         //create rows for the list view

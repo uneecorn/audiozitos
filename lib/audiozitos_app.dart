@@ -10,6 +10,8 @@ class AudiozitosApp extends StatelessWidget {
         title: 'Audiozitos MVP 🏆',
         theme: ThemeData(
           primarySwatch: Colors.purple,
+          primaryColor: Colors.purple,
+          canvasColor: Colors.white,
         ),
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
