@@ -11,10 +11,11 @@ class AudiozitosApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.purple,
         ),
-        home: RecordsPage(),
+        initialRoute: '/',
         routes: <String, WidgetBuilder>{
-          '/recorder': (BuildContext context) => RecorderPage(),
-          '/configurations': (BuildContext context) => ConfigurationsPage(),
+          '/': (context) => RecordsPage(),
+          '/recorder': (context) => RecorderPage(),
+          '/configurations': (context) => ConfigurationsPage(),
         },
       );
 }

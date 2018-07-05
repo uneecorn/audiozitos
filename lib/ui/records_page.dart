@@ -8,13 +8,12 @@ class RecordsPage extends StatefulWidget {
 class _RecordsPageState extends State<RecordsPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-    //TODO: fight for the appBar ♥
-    appBar: AppBar(
-      title: Text('Audiozitos',
-      style: TextStyle(color: Colors.white)),
-      centerTitle: true,
-      backgroundColor: Colors.purple,
-    ),
+        //TODO: fight for the appBar ♥
+        appBar: AppBar(
+          title: Text('Audiozitos', style: TextStyle(color: Colors.white)),
+          centerTitle: true,
+          backgroundColor: Colors.purple,
+        ),
         floatingActionButton: FloatingActionButton(
           child: Icon(
             Icons.keyboard_voice,
@@ -23,27 +22,28 @@ class _RecordsPageState extends State<RecordsPage> {
           backgroundColor: Colors.deepPurple,
           // TODO: open recording page with a sapeka animation
           onPressed: () {
-            Navigator.pop(context);
-            Navigator.of(context).pushNamed('/recorder');
+            Navigator.pushNamed(context, '/recorder');
           },
         ),
         body: buildList(),
-    backgroundColor: Colors.white30,
-
+        backgroundColor: Colors.white30,
       );
 }
 
 var container = Container(
   height: 180.0,
   child: Center(
-    child: FloatingActionButton(
-      child: Icon(
-        Icons.keyboard_voice,
-        color: Colors.white,
+    child: CircleAvatar(
+      child: IconButton(
+        icon: Icon(
+          Icons.keyboard_voice,
+          color: Colors.white,
+        ),
+        onPressed: () => debugPrint('default recorder'),
       ),
+
       backgroundColor: Colors.purpleAccent,
       // TODO: open recording page with a sapeka animation
-      onPressed: () => debugPrint('default recorder'),
     ),
   ),
   decoration: BoxDecoration(
@@ -66,7 +66,8 @@ Widget buildList() {
   return ListView.builder(
       itemCount: 30,
       itemBuilder: (BuildContext context, int position) {
-        if (position == 0) return container;
+        if (position == 0)
+          return container;
         else if (position.isEven && position > 0) return Divider();
         final index = position ~/ 2;
 
