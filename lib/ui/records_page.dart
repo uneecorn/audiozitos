@@ -9,13 +9,13 @@ class _RecordsPageState extends State<RecordsPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         //TODO: fight for the appBar ♥
-        appBar: AppBar(
+        /*appBar: AppBar(
           title: Text(
             'Audiozitos',
           ),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
-        ),
+        ),*/
         floatingActionButton: FloatingActionButton(
           child: Icon(
             Icons.keyboard_voice,
@@ -29,7 +29,25 @@ class _RecordsPageState extends State<RecordsPage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomBar(),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: buildList(),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            const SliverAppBar(
+              title: const Text(
+                'Audiozitos',
+              ),
+              floating: true,
+              snap: true,
+              centerTitle: true,
+              backgroundColor: Colors.purple,
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                _buildList()
+              ),
+
+            ),
+          ],
+        ),
       );
 }
 
@@ -51,6 +69,59 @@ class BottomBar extends StatelessWidget {
       ),
     );
   }
+}
+
+List<Widget> _buildList() {
+  int itemCount = 15;
+  List<Widget> rows = List();
+  for (int i = 0; i < itemCount; i++) {
+    rows.add(
+      Column(
+        children: <Widget>[
+          Container(
+            child: ListTile(
+              title: Text(
+                'hey man',
+                style: TextStyle(
+                  fontSize: 15.5,
+                  color: Colors.purpleAccent,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              subtitle: Text(
+                'do you wanna see my recorder?',
+                style: TextStyle(
+                  fontSize: 14.5,
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              leading: IconButton(
+                icon: Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                ),
+                onPressed: () => debugPrint('play'),
+              ),
+            ),
+          ),
+          Divider(),
+        ],
+      ),
+    );
+  }
+  rows.add(ListTile(
+    title: Center(
+      child: Text(
+        'This is the end ♫♪',
+        style: TextStyle(
+          color: Colors.grey,
+        ),
+      ),
+    ),
+  ));
+  return rows;
 }
 
 Widget buildList() {
