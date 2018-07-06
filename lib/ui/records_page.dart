@@ -12,12 +12,12 @@ class _RecordsPageState extends State<RecordsPage> {
         appBar: AppBar(
           title: Text('Audiozitos', style: TextStyle(color: Colors.white)),
           centerTitle: true,
-          backgroundColor: Colors.purple,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
         floatingActionButton: FloatingActionButton(
           child: Icon(
             Icons.keyboard_voice,
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
           ),
           backgroundColor: Theme.of(context).primaryColor,
           onPressed: () {
@@ -26,8 +26,8 @@ class _RecordsPageState extends State<RecordsPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomBar(),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: buildList(),
-        backgroundColor: Colors.white30,
       );
 }
 
@@ -52,13 +52,24 @@ class BottomBar extends StatelessWidget {
 }
 
 Widget buildList() {
+  int itemCount = 30;
   // TODO: create service to get the recordings
   return ListView.builder(
-      itemCount: 30,
+      itemCount: itemCount,
       itemBuilder: (BuildContext context, int position) {
-        if (position.isOdd) return Divider();
-        final index = position ~/ 2;
-
+        if (position.isOdd)
+          return position == itemCount - 1
+              ? ListTile(
+                  title: Center(
+                    child: Text(
+                      'This is the end ♫♪',
+                      style: TextStyle(
+                        color: Theme.of(context).indicatorColor,
+                      ),
+                    ),
+                  ),
+                )
+              : Divider();
         //create rows for the list view
         return Container(
             child: ListTile(
