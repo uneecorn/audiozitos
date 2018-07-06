@@ -10,7 +10,9 @@ class _RecordsPageState extends State<RecordsPage> {
   Widget build(BuildContext context) => Scaffold(
         //TODO: fight for the appBar ♥
         appBar: AppBar(
-          title: Text('Audiozitos', style: TextStyle(color: Colors.white)),
+          title: Text(
+            'Audiozitos',
+          ),
           centerTitle: true,
           backgroundColor: Theme.of(context).primaryColor,
         ),
