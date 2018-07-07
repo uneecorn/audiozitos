@@ -29,27 +29,29 @@ class _RecordsPageState extends State<RecordsPage> {
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomBar(),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: CustomScrollView(
-          slivers: <Widget>[
-            const SliverAppBar(
-              title: const Text(
-                'Audiozitos',
-              ),
-              floating: true,
-              snap: true,
-              centerTitle: true,
-              backgroundColor: Colors.purple,
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                _buildList()
-              ),
-
-            ),
-          ],
-        ),
+        body: _customScrollView,
       );
 }
+
+CustomScrollView _customScrollView = CustomScrollView(
+  slivers: <Widget>[
+    const SliverAppBar(
+      title: const Text(
+        'Audiozitos',
+      ),
+      floating: true,
+      snap: true,
+      centerTitle: true,
+      backgroundColor: Colors.purple,
+    ),
+    SliverList(
+      delegate: SliverChildListDelegate(
+          _buildList()
+      ),
+
+    ),
+  ],
+);
 
 class BottomBar extends StatelessWidget {
   @override

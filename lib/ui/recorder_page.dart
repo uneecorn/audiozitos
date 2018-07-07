@@ -1,3 +1,4 @@
+import 'package:audiozitos/shared/containers/circle_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class RecorderPage extends StatefulWidget {
@@ -8,7 +9,7 @@ class RecorderPage extends StatefulWidget {
 class _RecorderPageState extends State<RecorderPage> {
   bool _isRecording = false;
 
-  IconData get _startStopButtonIcon =>
+  IconData get _startStopButtonIconData =>
       _isRecording ? Icons.stop : Icons.play_arrow;
 
   void _startRecording() {
@@ -31,44 +32,56 @@ class _RecorderPageState extends State<RecorderPage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) =>
+      Scaffold(
         //App Bar
         appBar: AppBar(
           title: Text('Recorder'),
           elevation:
-              Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
+          Theme
+              .of(context)
+              .platform == TargetPlatform.iOS ? 0.0 : 4.0,
         ),
-
-        body: PageView(
-          children: <Widget>[
-            Column(
+        backgroundColor: Theme
+            .of(context)
+            .scaffoldBackgroundColor,
+        body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.deepPurpleAccent,
+                    Colors.deepPurple,
+                  ],
+                  stops: [
+                    0.1,
+                    0.6
+                  ]),
+            ),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Center(
-                  child: Material(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.circular(75.0),
-                    child: Container(
-                      height: 150.0,
-                      width: 150.0,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(75.0),
-                        splashColor: Theme.of(context).accentColor,
-                        highlightColor: Theme.of(context).accentColor,
-                        onTap: _onStartStopButtonPressed,
-                        child: Center(
-                          child: Icon(
-                            _startStopButtonIcon,
-                            size: 60.0,
-                          ),
-                        ),
-                      ),
+                    child: CircleIconButton(
+                      onTap: _onStartStopButtonPressed,
+                      highlightColor: Theme.of(context).accentColor,
+                      splashColor: Theme.of(context).accentColor,
+                      iconData: _startStopButtonIconData,
+                      iconSize: 60.0,
+                      diameter: 150.0,
+                      primaryColor: Theme.of(context).primaryColor,
                     ),
-                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    //TODO: create discard button
+                  ],
                 ),
               ],
-            )
-          ],
-        ),
+            )),
       );
 }
+
+
