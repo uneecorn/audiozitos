@@ -37,7 +37,8 @@ matrix:
         - git clone https://github.com/flutter/flutter.git -b beta
         - ./flutter/bin/flutter doctor
       script:
-        - ./flutter/bin/flutter -v build apk
+        # Gradle requires a build name
+        - ./flutter/bin/flutter -v build apk --build-name=ci
 
     # iOS build configuration
     - os: osx
