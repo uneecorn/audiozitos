@@ -14,11 +14,11 @@ class CircleIconButton extends StatelessWidget {
     @required this.iconData,
     @required this.iconSize,
     @required this.onTap,
-    this.primaryColor,
+    @required this.primaryColor,
     @required this.diameter,
-    this.splashColor,
-    this.highlightColor,
-    this.iconColor,
+    @required this.splashColor,
+    @required this.highlightColor,
+    @required this.iconColor,
   });
 
   @override
