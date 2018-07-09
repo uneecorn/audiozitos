@@ -8,65 +8,143 @@ class RecordsPage extends StatefulWidget {
 class _RecordsPageState extends State<RecordsPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-    //TODO: fight for the appBar ♥
-    appBar: AppBar(
-      title: Text('Audiozitos',
-      style: TextStyle(color: Colors.white)),
-      centerTitle: true,
-      backgroundColor: Colors.purple,
-    ),
+        //TODO: fight for the appBar ♥
+        /*appBar: AppBar(
+          title: Text(
+            'Audiozitos',
+          ),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).primaryColor,
+        ),*/
         floatingActionButton: FloatingActionButton(
           child: Icon(
             Icons.keyboard_voice,
-            color: Colors.white,
+            color: Theme.of(context).canvasColor,
           ),
-          backgroundColor: Colors.deepPurple,
-          // TODO: open recording page with a sapeka animation
-          onPressed: () => debugPrint('hello'),
+          backgroundColor: Theme.of(context).primaryColor,
+          onPressed: () {
+            Navigator.pushNamed(context, '/recorder');
+          },
         ),
-        body: buildList(),
-    backgroundColor: Colors.white30,
-
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        bottomNavigationBar: BottomBar(),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        body: _customScrollView,
       );
 }
 
-var container = Container(
-  height: 180.0,
-  child: Center(
-    child: FloatingActionButton(
-      child: Icon(
-        Icons.keyboard_voice,
-        color: Colors.white,
+CustomScrollView _customScrollView = CustomScrollView(
+  slivers: <Widget>[
+    const SliverAppBar(
+      title: const Text(
+        'Audiozitos',
       ),
-      backgroundColor: Colors.purpleAccent,
-      // TODO: open recording page with a sapeka animation
-      onPressed: () => debugPrint('default recorder'),
+      floating: true,
+      snap: true,
+      centerTitle: true,
+      backgroundColor: Colors.purple,
     ),
-  ),
-  decoration: BoxDecoration(
-    gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        Colors.deepPurpleAccent,
-        Colors.deepPurple,
-        Colors.purple,
-        Colors.purpleAccent,
-      ],
-      stops: [0.1, 0.4, 0.6, 0.9],
+    SliverList(
+      delegate: SliverChildListDelegate(
+          _buildList()
+      ),
+
     ),
-  ),
+  ],
 );
 
+class BottomBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      color: Theme.of(context).primaryColor,
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0),
+            child: IconButton(
+              icon: Icon(Icons.settings, color: Theme.of(context).canvasColor),
+              onPressed: () => Navigator.pushNamed(context, '/configurations'),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+List<Widget> _buildList() {
+  int itemCount = 15;
+  List<Widget> rows = List();
+  for (int i = 0; i < itemCount; i++) {
+    rows.add(
+      Column(
+        children: <Widget>[
+          Container(
+            child: ListTile(
+              title: Text(
+                'hey man',
+                style: TextStyle(
+                  fontSize: 15.5,
+                  color: Colors.purpleAccent,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              subtitle: Text(
+                'do you wanna see my recorder?',
+                style: TextStyle(
+                  fontSize: 14.5,
+                  color: Colors.white,
+                  fontWeight: FontWeight.normal,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              leading: IconButton(
+                icon: Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                ),
+                onPressed: () => debugPrint('play'),
+              ),
+            ),
+          ),
+          Divider(),
+        ],
+      ),
+    );
+  }
+  rows.add(ListTile(
+    title: Center(
+      child: Text(
+        'This is the end ♫♪',
+        style: TextStyle(
+          color: Colors.grey,
+        ),
+      ),
+    ),
+  ));
+  return rows;
+}
+
 Widget buildList() {
+  int itemCount = 30;
   // TODO: create service to get the recordings
   return ListView.builder(
-      itemCount: 30,
+      itemCount: itemCount,
       itemBuilder: (BuildContext context, int position) {
-        if (position == 0) return container;
-        else if (position.isEven && position > 0) return Divider();
-        final index = position ~/ 2;
-
+        if (position.isOdd)
+          return position == itemCount - 1
+              ? ListTile(
+                  title: Center(
+                    child: Text(
+                      'This is the end ♫♪',
+                      style: TextStyle(
+                        color: Theme.of(context).indicatorColor,
+                      ),
+                    ),
+                  ),
+                )
+              : Divider();
         //create rows for the list view
         return Container(
             child: ListTile(
