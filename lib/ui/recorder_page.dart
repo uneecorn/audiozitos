@@ -31,57 +31,67 @@ class _RecorderPageState extends State<RecorderPage> {
       _startRecording();
   }
 
+  void _onDiscardButtonPressed() {
+    if (_isRecording) _stopRecording();
+    //TODO discard current recording
+  }
+
   @override
-  Widget build(BuildContext context) =>
-      Scaffold(
+  Widget build(BuildContext context) => Scaffold(
         //App Bar
         appBar: AppBar(
           title: Text('Recorder'),
           elevation:
-          Theme
-              .of(context)
-              .platform == TargetPlatform.iOS ? 0.0 : 4.0,
+              Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
         ),
-        backgroundColor: Theme
-            .of(context)
-            .scaffoldBackgroundColor,
         body: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Colors.deepPurpleAccent,
-                    Colors.deepPurple,
+                    Colors.white,
+                    Colors.grey,
                   ],
                   stops: [
                     0.1,
-                    0.6
+                    0.9
                   ]),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Center(
-                    child: CircleIconButton(
-                      onTap: _onStartStopButtonPressed,
-                      highlightColor: Theme.of(context).accentColor,
-                      splashColor: Theme.of(context).accentColor,
-                      iconData: _startStopButtonIconData,
-                      iconSize: 60.0,
-                      diameter: 150.0,
-                      primaryColor: Theme.of(context).primaryColor,
-                    ),
+                  child: CircleIconButton(
+                    onTap: _onStartStopButtonPressed,
+                    highlightColor: Theme.of(context).highlightColor,
+                    splashColor: Theme.of(context).splashColor,
+                    iconData: this._startStopButtonIconData,
+                    iconSize: 60.0,
+                    diameter: 150.0,
+                    primaryColor: Theme.of(context).primaryColor,
+                    iconColor: Colors.black,
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    //TODO: create discard button
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(0.0, 0.0, 30.0, 0.0),
+                      child: CircleIconButton(
+                        onTap: this._onDiscardButtonPressed,
+                        highlightColor: Colors.redAccent,
+                        splashColor: Colors.redAccent,
+                        iconData: Icons.delete,
+                        iconSize: 30.0,
+                        diameter: 70.0,
+                        primaryColor: Colors.red,
+                        iconColor: Colors.black,
+                      ),
+                    ),
                   ],
                 ),
               ],
             )),
       );
 }
-
-
