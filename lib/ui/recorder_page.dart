@@ -41,8 +41,6 @@ class _RecorderPageState extends State<RecorderPage> {
         //App Bar
         appBar: AppBar(
           title: Text('Recorder'),
-          elevation:
-              Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
         ),
         body: Container(
             decoration: BoxDecoration(

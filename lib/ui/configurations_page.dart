@@ -6,8 +6,6 @@ class ConfigurationsPage extends StatelessWidget {
         //App Bar
         appBar: AppBar(
           title: Text('Configurations'),
-          elevation:
-              Theme.of(context).platform == TargetPlatform.iOS ? 0.0 : 4.0,
         ),
 
         body: PageView(
