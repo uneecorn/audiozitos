@@ -1,8 +1,41 @@
 matrix:
   include:
-  
+
+    # Flutter Tests
+    - os: linux
+      addons:
+        apt:
+          # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
+          sources:
+            - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
+          packages:
+            - libstdc++6
+            - fonts-droid
+      before_script:
+        # install Fltuter
+        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+        - ./flutter/bin/flutter doctor
+
+      # Run script!
+      script:
+        - ./flutter/bin/flutter test
+
     # Android build configuration
     - os: linux
+      addons:
+        apt:
+          # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
+          sources:
+            - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
+          packages:
+            - libstdc++6
+            - fonts-droid
+      before_script:
+        # install Fltuter
+        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+        - ./flutter/bin/flutter doctor
+
+      # Env. config.
       language: android
       licenses:
         - 'android-sdk-preview-license-.+'
@@ -24,26 +57,14 @@ matrix:
           - extra
 
       jdk: oraclejdk10
-      addons:
-        apt:
-          # Flutter depends on /usr/lib/x86_64-linux-gnu/libstdc++.so.6 version GLIBCXX_3.4.18
-          sources:
-            - ubuntu-toolchain-r-test # if we don't specify this, the libstdc++6 we get is the wrong version
-          packages:
-            - libstdc++6
-            - fonts-droid
-      before_script:
-        # install Fltuter
-        - git clone https://github.com/flutter/flutter.git -b beta
-        - ./flutter/bin/flutter doctor
+
+      # Run script!c
       script:
         # Gradle requires a build name
         - ./flutter/bin/flutter -v build apk --build-name=ci
 
     # iOS build configuration
     - os: osx
-      language: generic
-      osx_image: xcode9.4
       before_script:
         - brew update
         - brew install --HEAD libimobiledevice
@@ -52,6 +73,13 @@ matrix:
         - pip install six
         # install Fltuter
         - git clone https://github.com/flutter/flutter.git -b beta --depth 1
+        - ./flutter/bin/flutter doctor
+
+      # Env. config.
+      language: generic
+      osx_image: xcode9.4
+
+      # Run script!
       script:
         - ./flutter/bin/flutter -v build ios --no-codesign
 
