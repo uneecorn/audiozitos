@@ -1,6 +1,6 @@
 matrix:
   include:
-  
+
     # Flutter Tests
     - os: linux
       addons:
@@ -15,7 +15,10 @@ matrix:
         # install Fltuter
         - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
         - ./flutter/bin/flutter doctor
-      
+
+      # Env. config.
+      language: dart
+
       # Run script!
       script:
         - ./flutter/bin/flutter test
