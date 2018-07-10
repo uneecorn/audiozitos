@@ -14,8 +14,11 @@ class AudiozitosApp extends StatelessWidget {
           primaryColorDark: Colors.deepPurple,
           accentColor: Colors.purpleAccent,
           canvasColor: Colors.white,
-          scaffoldBackgroundColor: Colors.white30,
+          scaffoldBackgroundColor: Colors.black54,
+          dividerColor: Colors.grey,
           indicatorColor: Colors.grey,
+          splashColor: Colors.purpleAccent,
+          highlightColor: Colors.purpleAccent,
         ),
         initialRoute: '/',
         routes: <String, WidgetBuilder>{

@@ -28,8 +28,10 @@ class _RecordsPageState extends State<RecordsPage> {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
         bottomNavigationBar: BottomBar(),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        body: _customScrollView,
+        body: Container(
+          color: Colors.black54,
+          child: _customScrollView,
+        ),
       );
 }
 
@@ -45,10 +47,7 @@ CustomScrollView _customScrollView = CustomScrollView(
       backgroundColor: Colors.purple,
     ),
     SliverList(
-      delegate: SliverChildListDelegate(
-          _buildList()
-      ),
-
+      delegate: SliverChildListDelegate(_buildList()),
     ),
   ],
 );
@@ -99,12 +98,15 @@ List<Widget> _buildList() {
                   fontStyle: FontStyle.italic,
                 ),
               ),
-              leading: IconButton(
-                icon: Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
+              leading: CircleAvatar(
+                backgroundColor: i.isEven ? Colors.blue : Colors.pink,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.play_arrow,
+                    color: Colors.white,
+                  ),
+                  onPressed: () => debugPrint('play'),
                 ),
-                onPressed: () => debugPrint('play'),
               ),
             ),
           ),

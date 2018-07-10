@@ -8,8 +8,7 @@ class CircleIconButton extends StatelessWidget {
   final double diameter;
   final Color splashColor;
   final Color highlightColor;
-
-
+  final Color iconColor;
 
   const CircleIconButton({
     @required this.iconData,
@@ -19,11 +18,12 @@ class CircleIconButton extends StatelessWidget {
     @required this.diameter,
     @required this.splashColor,
     @required this.highlightColor,
+    @required this.iconColor,
   });
-
 
   @override
   Widget build(BuildContext context) => Material(
+    shadowColor: Colors.black,
     type: MaterialType.button,
     color: this.primaryColor,
     borderRadius: BorderRadius.circular(this.diameter / 2),
@@ -39,6 +39,7 @@ class CircleIconButton extends StatelessWidget {
           child: Icon(
             this.iconData,
             size: this.iconSize,
+            color: this.iconColor,
           ),
         ),
       ),
