@@ -1,4 +1,5 @@
 import 'package:audiozitos/shared/containers/circle_icon_button.dart';
+import 'package:audiozitos/shared/services/recording_service.dart';
 import 'package:flutter/material.dart';
 
 class RecorderPage extends StatefulWidget {
@@ -7,6 +8,9 @@ class RecorderPage extends StatefulWidget {
 }
 
 class _RecorderPageState extends State<RecorderPage> {
+
+  final RecordingService _recordingService = RecordingService();
+
   bool _isRecording = false;
 
   IconData get _startStopButtonIconData =>
@@ -15,12 +19,14 @@ class _RecorderPageState extends State<RecorderPage> {
   void _startRecording() {
     setState(() {
       _isRecording = true;
+      _recordingService.start();
     });
   }
 
   void _stopRecording() {
     setState(() {
       _isRecording = false;
+      _recordingService.stop();
     });
   }
 
