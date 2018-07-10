@@ -9,7 +9,7 @@ void main() {
 
 runIntegrationTests() {
   testWidgets('app should work', (tester) async {
-    await tester.pumpWidget(AudiozitosApp());
+    await tester.pumpWidget(new AudiozitosApp());
     expect(find.text('Audiozitos'), findsOneWidget);
   });
 }
