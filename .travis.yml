@@ -13,11 +13,8 @@ matrix:
             - fonts-droid
       before_script:
         # install Fltuter
-        - git clone https://github.com/flutter/flutter.git -b alpha --depth 1
+        - git clone https://github.com/flutter/flutter.git -b beta --depth 1
         - ./flutter/bin/flutter doctor
-
-      # Env. config.
-      language: dart
 
       # Run script!
       script:
