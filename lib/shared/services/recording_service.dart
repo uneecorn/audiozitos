@@ -5,6 +5,7 @@ import 'package:audiozitos/shared/services/file_service.dart';
 
 //TODO: create an interface and add dependency injection
 class RecordingService {
+
   final FileService _fileService = FileService();
 
   Future<bool> isRecording() async => await AudioRecorder.isRecording;
@@ -12,10 +13,12 @@ class RecordingService {
   Future<bool> hasPermissions() async => await AudioRecorder.hasPermissions;
 
   void start() async {
-    String path = 'audiozitos_${await _fileService
-        .getApplicationDocsDirectoryPath()}_${DateTime.now()}';
+    String docsDirectory = await _fileService.getApplicationDocsDirectoryPath();
+    String path = 'audiozitos_${docsDirectory}_${DateTime.now()}';
     await AudioRecorder.start(
-        path: path, audioOutputFormat: AudioOutputFormat.AAC);
+      path: path, 
+      audioOutputFormat: AudioOutputFormat.AAC,
+    );
   }
 
   void stop(bool save) async {
