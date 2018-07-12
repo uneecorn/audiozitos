@@ -1,6 +1,6 @@
 # Auidozitos 🔉
 
-Audiozitos is a audio recoder designed to be fast, simple and stressless.
+Audiozitos is an audio recoder designed to be fast, simple and stressless.
 
 We're still developing the app, but we gonna publish experimental versions ASAP. ⚡
 
