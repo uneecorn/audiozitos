@@ -23,23 +23,22 @@ class _RecorderPageState extends State<RecorderPage> {
     });
   }
 
-  void _stopRecording() {
+  void _stopRecording(bool save) {
     setState(() {
       _isRecording = false;
-      _recordingService.stop();
+      _recordingService.stop(save);
     });
   }
 
   void _onStartStopButtonPressed() {
     if (_isRecording)
-      _stopRecording();
+      _stopRecording(true);
     else
       _startRecording();
   }
 
   void _onDiscardButtonPressed() {
-    if (_isRecording) _stopRecording();
-    //TODO discard current recording
+    if (_isRecording) _stopRecording(false);
   }
 
   @override

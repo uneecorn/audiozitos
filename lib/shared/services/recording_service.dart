@@ -12,14 +12,14 @@ class RecordingService {
   Future<bool> hasPermissions() async => await AudioRecorder.hasPermissions;
 
   void start() async {
-    String path = '${await _fileService
+    String path = 'audiozitos_${await _fileService
         .getApplicationDocsDirectoryPath()}_${DateTime.now()}';
     await AudioRecorder.start(
         path: path, audioOutputFormat: AudioOutputFormat.AAC);
   }
 
-  void stop() async {
+  void stop(bool save) async {
     Recording rec = await AudioRecorder.stop();
-    File recFile = File(rec.path);
+    if (save) File recFile = File(rec.path);
   }
 }
