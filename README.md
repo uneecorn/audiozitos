@@ -4,6 +4,10 @@ Audiozitos is a audio recoder designed to be fast, simple and stressless.
 
 We're still developing the app, but we gonna publish experimental versions ASAP. ⚡
 
+[![Build Status](https://travis-ci.com/uni-labs/audiozitos.svg?branch=master)](https://travis-ci.com/uni-labs/audiozitos)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/928fbe5b41884107a42cc4a507bcba6b)](https://www.codacy.com/app/uni-labs/audiozitos?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=uni-labs/audiozitos&amp;utm_campaign=Badge_Grade)
+[![codebeat badge](https://codebeat.co/badges/871ae3be-f31d-4cf6-b212-6bc06d2b6c89)](https://codebeat.co/projects/github-com-uni-labs-audiozitos-master)
+
 ## Main goals
 
 ~We're working to complete them all.~
