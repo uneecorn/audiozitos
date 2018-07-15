@@ -16,13 +16,13 @@ class RecordingService {
     String docsDirectory = await _fileService.getApplicationDocsDirectoryPath();
     String path = 'audiozitos_${docsDirectory}_${DateTime.now()}';
     await AudioRecorder.start(
-      path: path, 
+      path: path,
       audioOutputFormat: AudioOutputFormat.AAC,
     );
   }
 
   void stop(bool save) async {
     Recording rec = await AudioRecorder.stop();
-    if (save) File recFile = File(rec.path);
+    if (save) /* File recFile = */ File(rec.path);
   }
 }

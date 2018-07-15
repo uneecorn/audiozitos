@@ -12,14 +12,13 @@ version: 1.0.0+1
 dependencies:
   flutter:
     sdk: flutter
-  path_provider:
   cupertino_icons: ^0.1.2
+  path_provider:
+  audio_recorder:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  audio_recorder:
-    path: ../../../Program Files\\flutter\\.pub-cache\\hosted\\pub.dartlang.org\\audio_recorder-0.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
