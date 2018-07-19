@@ -18,3 +18,4 @@ doc/api/
 .idea/
 *.log
 android/app/build.*
+\.flutter-plugins
