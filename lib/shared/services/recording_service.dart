@@ -1,9 +1,10 @@
+import './file_service.dart';
+
 import 'dart:async';
 import 'dart:io';
 import 'package:audio_recorder/audio_recorder.dart';
-import 'package:audiozitos/shared/services/file_service.dart';
 
-//TODO: create an interface and add dependency injection
+// TODO: create an interface and add dependency injection
 class RecordingService {
 
   final FileService _fileService = FileService();

@@ -2,20 +2,19 @@
 
 # Files and directories created by pub
 .dart_tool/
+
 .packages
 .pub/
+
 build/
-# If you're building an application, you may want to check-in your pubspec.lock
-pubspec.lock
+
+.flutter-plugins
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.
 doc/api/
 
-# Audiozitos
-
-# IDE files
-.idea/
+# Other generated files
 *.log
 android/app/build.*
-\.flutter-plugins
+.DS_Store
